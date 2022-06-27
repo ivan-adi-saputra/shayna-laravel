@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ProductGallery;
 use App\Http\Requests\ProductGalleryRequest;
+use App\Models\Product;
 
 class ProductGalleryController extends Controller
 {
@@ -14,7 +15,10 @@ class ProductGalleryController extends Controller
      */
     public function index()
     {
-        //
+        $items = ProductGallery::with('Product')->get();
+        return view('pages.product-galleries.index', [
+            'items' => $items
+        ]);
     }
 
     /**
@@ -24,7 +28,10 @@ class ProductGalleryController extends Controller
      */
     public function create()
     {
-        //
+        $product = Product::all();
+        return view('pages.product-galleries.create', [
+            'products' => $product
+        ]);
     }
 
     /**
@@ -35,7 +42,11 @@ class ProductGalleryController extends Controller
      */
     public function store(ProductGalleryRequest $request)
     {
-        //
+        $data = $request->all(); 
+        $data['photo'] = $request->file('photo')->store('assets/products');
+
+        ProductGallery::create($data); 
+        return redirect()->route('product-galleries.index');
     }
 
     /**
@@ -78,8 +89,11 @@ class ProductGalleryController extends Controller
      * @param  \App\Models\ProductGallery  $productGallery
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ProductGallery $productGallery)
+    public function destroy($id)
     {
-        //
+        $item = ProductGallery::findOrFail($id);
+        $item->delete();
+
+        return redirect()->route('product-galleries.index');
     }
 }
