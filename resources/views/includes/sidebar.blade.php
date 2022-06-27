@@ -9,17 +9,17 @@
                 </li>
                 <li class="menu-title">Barang</li><!-- /.menu-title -->
                 <li class="{{ Request::is('products') ? 'active' : '' }}">
-                    <a href="#"> <i class="menu-icon fa fa-list"></i>Lihat Barang</a>
+                    <a href="{{ route('products.index') }}"> <i class="menu-icon fa fa-list"></i>Lihat Barang</a>
                 </li>
                 <li class="{{ Request::is('products/create') ? 'active' : '' }}">
-                    <a href="#"> <i class="menu-icon fa fa-plus"></i>Tambah Barang</a>
+                    <a href="{{ route('products.create') }}"> <i class="menu-icon fa fa-plus"></i>Tambah Barang</a>
                 </li>
 
                 <li class="menu-title">Foto Barang</li><!-- /.menu-title -->
-                <li class="{{ Request::is('product-galleries') ? 'active' : '' }}">
+                <li class="">
                     <a href="#"> <i class="menu-icon fa fa-list"></i>Lihat Foto Barang</a>
                 </li>
-                <li class="{{ Request::is('product-galleries/create') ? 'active' : '' }}">
+                <li class="">
                     <a href="#"> <i class="menu-icon fa fa-plus"></i>Tambah Foto Barang</a>
                 </li>
 

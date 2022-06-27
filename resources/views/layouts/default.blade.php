@@ -10,30 +10,30 @@
     <meta name="description" content="ShaynaAdmin - HTML5 Admin Template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-   {{-- style --}}
-   @stack('before-style')
-   @include('includes.style')
-   @stack('after-style')
+    {{-- style --}}
+    @stack('before-style')
+    @include('includes.style')
+    @stack('after-style')
 </head>
 
 <body>
     {{-- sidebar --}}
     @include('includes.sidebar')
-
+    <!-- Right Panel -->
     <div id="right-panel" class="right-panel">
-        {{-- navbar  --}}
-        @include('includes.navbar')
-
+       {{-- navbar --}}
+       @include('includes.navbar')
         <div class="content">
             {{-- content --}}
             @yield('content')
         </div>
         <div class="clearfix"></div>
     </div>
+    <!-- /#right-panel -->
 
-   {{-- script --}}
-   @stack('before-script')
-   @include('includes.script')
-   @stack('after-script')
+    {{-- script --}}
+    @stack('before-script')
+    @include('includes.script')
+    @stack('after-script')
 </body>
 </html>

@@ -1,5 +1,5 @@
-<!-- Header-->
-<header id="header" class="header">
+ <!-- Header-->
+ <header id="header" class="header">
     <div class="top-left">
         <div class="navbar-header">
             <a class="navbar-brand" href="./"><img src="images/logo.png" alt="Logo"></a>

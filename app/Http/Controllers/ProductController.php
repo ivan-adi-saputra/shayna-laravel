@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Http\Requests\ProductRequest;
+use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
@@ -14,7 +15,10 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $items = Product::all();
+        return view('pages.product.index', [
+            'items' => $items
+        ]);
     }
 
     /**
@@ -24,7 +28,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.product.create');
     }
 
     /**
@@ -35,7 +39,11 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request)
     {
-        //
+        $data = $request->all();
+        $data['slug'] = Str::slug($request->name); 
+
+        Product::create($data); 
+        return redirect()->route('products.index');
     }
 
     /**
@@ -55,9 +63,12 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit($id)
     {
-        //
+        $items = Product::findOrFail($id);
+        return view('pages.product.edit', [
+            'item' => $items,
+        ]);
     }
 
     /**
@@ -67,9 +78,14 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(ProductRequest $request, Product $product)
+    public function update(ProductRequest $request, $id)
     {
-        //
+        $data = $request->all(); 
+        $data['slug'] = Str::slug($request->name);
+
+        $items = Product::findOrFail($id);
+        $items->update($data);
+        return redirect()->route('products.index');
     }
 
     /**
@@ -80,6 +96,7 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        Product::destroy($product->id); 
+        return redirect()->route('products.index');
     }
 }
