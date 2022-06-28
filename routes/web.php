@@ -18,6 +18,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
+Route::get('products/{id}/gallery', [ProductController::class, 'gallery'])->name('product-gallery');
+
 Route::resource('products', ProductController::class);
 
 Route::resource('product-galleries', ProductGalleryController::class);
