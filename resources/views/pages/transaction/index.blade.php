@@ -28,7 +28,7 @@
                                     <td>{{ $item->name }}</td>
                                     <td>{{ $item->email }}</td>
                                     <td>{{ $item->number }}</td>
-                                    <td>{{ $item->transaction_total }}</td>
+                                    <td>${{ $item->transaction_total }}</td>
                                     <td>
                                         @if ($item->transaction_status == 'PENDING')
                                             <span class="badge badge-info">
@@ -55,7 +55,7 @@
                                         data-remote="{{ route('transactions.show', $item->id) }}"
                                         data-toggle="modal"
                                         data-target="#mymodal"
-                                        data-title="Detail Transaksi" {{ $item->uuid }}
+                                        data-title="Detail Transaksi {{ $item->uuid }}"
                                         class="btn btn-info btn-sm">
                                             <i class="fa fa-eye"></i>
                                         </a>
