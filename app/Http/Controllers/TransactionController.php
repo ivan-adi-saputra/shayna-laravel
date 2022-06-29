@@ -64,9 +64,12 @@ class TransactionController extends Controller
      * @param  \App\Models\Transaction  $transaction
      * @return \Illuminate\Http\Response
      */
-    public function edit(Transaction $transaction)
+    public function edit($id)
     {
-        //
+        $item = Transaction::findOrFail($id);
+        return view('pages.transaction.edit', [
+            'item' => $item
+        ]);
     }
 
     /**
@@ -76,9 +79,15 @@ class TransactionController extends Controller
      * @param  \App\Models\Transaction  $transaction
      * @return \Illuminate\Http\Response
      */
-    public function update(TransactionRequest $request, Transaction $transaction)
+    public function update(TransactionRequest $request, $id)
     {
-        //
+        $data = $request->all(); 
+
+        $item = Transaction::findOrFail($id);
+        $item->update($data);
+        // Transaction::where('id', $transaction->id)
+        //             ->update($data); 
+        return redirect()->route('transactions.index');
     }
 
     /**
@@ -89,6 +98,10 @@ class TransactionController extends Controller
      */
     public function destroy(Transaction $transaction)
     {
-        //
+        Transaction::destroy($transaction->id);
+        // $item = Transaction::findOrFail($id); 
+        // $item->delete();
+
+        return redirect()->route('transactions.index');
     }
 }
