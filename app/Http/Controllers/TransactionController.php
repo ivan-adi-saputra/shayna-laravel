@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Transaction;
-use App\Http\Requests\TransactionRequest;
 use App\Models\Product;
+use App\Models\Transaction;
+use Illuminate\Routing\Controller;
+use App\Http\Requests\TransactionRequest;
+use App\Http\Requests\setStatusRequest;
 
 class TransactionController extends Controller
 {
@@ -101,6 +103,18 @@ class TransactionController extends Controller
         Transaction::destroy($transaction->id);
         // $item = Transaction::findOrFail($id); 
         // $item->delete();
+
+        return redirect()->route('transactions.index');
+    }
+
+    public function setStatus(setStatusRequest $request, $id)
+    {
+        $request->status;
+
+        $item = Transaction::findOrFail($id); 
+        $item->transaction_status = $request->status;
+
+        $item->save();
 
         return redirect()->route('transactions.index');
     }
