@@ -48,7 +48,7 @@
 </script>
 
 <!--Local Stuff-->
-<script>
+{{-- <script>
     jQuery(document).ready(function($) {
         "use strict";
 
@@ -238,7 +238,7 @@
         });
         // Bar Chart #flotBarChart End
     });
-</script>
+</script> --}}
 
 <script>
     jQuery(document).ready(function($){
